@@ -1,0 +1,307 @@
+/* ============================
+   Page Wrapper
+   ============================ */
+.pageWrapper {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px 64px;
+  background: var(--bg);
+}
+
+/* ============================
+   Profile / Header
+   ============================ */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 36px;
+  animation: fadeInDown 0.6s ease both;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo */
+.logoRing {
+  position: relative;
+  width: 108px;
+  height: 108px;
+  margin-bottom: 18px;
+}
+
+.logoRing::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e07b2e, #f5a623, #5b4fcf, #22c55e);
+  z-index: 0;
+  animation: spinRing 5s linear infinite;
+}
+
+@keyframes spinRing {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.logoCircle {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.logoCircle img,
+.logoImg {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+}
+
+/* Brand Name */
+.brandName {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.brandTagline {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 260px;
+  line-height: 1.5;
+}
+
+/* ============================
+   Divider
+   ============================ */
+.divider {
+  width: 100%;
+  max-width: 440px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin-bottom: 28px;
+  animation: fadeIn 0.6s 0.3s ease both;
+}
+
+/* ============================
+   Links Container
+   ============================ */
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ============================
+   Section Label
+   ============================ */
+.sectionLabel {
+  width: 100%;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 4px;
+  margin-top: 4px;
+  padding-left: 2px;
+  animation: fadeIn 0.6s 0.2s ease both;
+}
+
+/* ============================
+   Link Card
+   ============================ */
+.linkCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-card);
+  background: #ffffff;
+  border: 1.5px solid #e8eaf0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+  text-decoration: none;
+  color: var(--text-primary);
+  animation: fadeInUp 0.5s ease both;
+}
+
+.linkCard:active {
+  transform: scale(0.99);
+}
+
+/* Per-platform hover: colored border + colored shadow */
+.linkCard.website:hover   { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(91,79,207,0.18);   border-color: #a89ef5; }
+.linkCard.instagram:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(225,48,108,0.18);  border-color: #f4a0b8; }
+.linkCard.facebook:hover  { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(24,119,242,0.18);  border-color: #90bdfa; }
+.linkCard.whatsapp:hover  { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(37,211,102,0.18);  border-color: #7de0ac; }
+.linkCard.linkedin:hover  { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(10,102,194,0.18);  border-color: #80bbea; }
+.linkCard.youtube:hover   { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(255,0,0,0.18);     border-color: #fa9090; }
+.linkCard.blogger:hover   { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(245,124,0,0.18);   border-color: #f5bc80; }
+.linkCard.medium:hover    { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(41,41,41,0.14);    border-color: #aaaaaa; }
+.linkCard.quora:hover     { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(185,43,39,0.18);   border-color: #e89090; }
+.linkCard.reddit:hover    { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(255,69,0,0.18);    border-color: #f5a880; }
+
+/* Staggered animation */
+.linkCard:nth-child(1)  { animation-delay: 0.08s; }
+.linkCard:nth-child(2)  { animation-delay: 0.14s; }
+.linkCard:nth-child(3)  { animation-delay: 0.20s; }
+.linkCard:nth-child(4)  { animation-delay: 0.26s; }
+.linkCard:nth-child(5)  { animation-delay: 0.32s; }
+.linkCard:nth-child(6)  { animation-delay: 0.38s; }
+.linkCard:nth-child(7)  { animation-delay: 0.44s; }
+.linkCard:nth-child(8)  { animation-delay: 0.50s; }
+.linkCard:nth-child(9)  { animation-delay: 0.56s; }
+.linkCard:nth-child(10) { animation-delay: 0.62s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================
+   Icon Box
+   ============================ */
+.iconBox {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+  transition: transform 0.25s ease;
+}
+
+.linkCard:hover .iconBox {
+  transform: rotate(-6deg) scale(1.08);
+}
+
+/* Icon backgrounds — matching smepaisa.com color palette */
+.iconBox.website   { background: linear-gradient(135deg, #5b4fcf, #7c6ef0); }
+.iconBox.instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+.iconBox.facebook  { background: linear-gradient(135deg, #1877f2, #0d5dbf); }
+.iconBox.whatsapp  { background: linear-gradient(135deg, #25d366, #128c7e); }
+.iconBox.linkedin  { background: linear-gradient(135deg, #0a66c2, #0851a0); }
+.iconBox.youtube   { background: linear-gradient(135deg, #ff0000, #cc0000); }
+.iconBox.blogger   { background: linear-gradient(135deg, #f57c00, #e65100); }
+.iconBox.medium    { background: linear-gradient(135deg, #292929, #444444); }
+.iconBox.quora     { background: linear-gradient(135deg, #b92b27, #8b0000); }
+.iconBox.reddit    { background: linear-gradient(135deg, #ff4500, #cc3700); }
+
+/* ============================
+   Card Text
+   ============================ */
+.cardContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardTitle {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardSubtitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================
+   Arrow
+   ============================ */
+.arrow {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+  border: 1.5px solid var(--border);
+}
+
+.linkCard:hover .arrow {
+  color: var(--text-primary);
+  background: var(--orange-light);
+  border-color: #e07b2e44;
+  transform: translateX(2px);
+}
+
+/* ============================
+   Footer
+   ============================ */
+.footer {
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: fadeIn 0.6s 0.8s ease both;
+}
+
+.footerText {
+  font-size: 11.5px;
+  color: #adb5bd;
+  letter-spacing: 0.2px;
+}
+
+.footerBrand {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 0.3px;
+}
+
+/* ============================
+   Utilities
+   ============================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .pageWrapper { padding: 36px 14px 52px; }
+  .brandName   { font-size: 21px; }
+  .logoRing, .logoCircle { width: 92px; height: 92px; }
+}
