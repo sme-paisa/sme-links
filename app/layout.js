@@ -11,6 +11,11 @@ export const metadata = {
   title: "SME PAISA — Quick Links",
   description: "Connect with SME PAISA across all platforms. Find our website, social media, and contact links.",
   keywords: "SME PAISA, SME, business finance, links",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     title: "SME PAISA — Quick Links",
     description: "Connect with SME PAISA across all platforms.",
