@@ -1,5 +1,5 @@
 /* ============================
-   Page Wrapper
+   Page Wrapper & Layout
    ============================ */
 .pageWrapper {
   position: relative;
@@ -8,41 +8,119 @@
   flex-direction: column;
   align-items: center;
   padding: 48px 20px 64px;
-  background: var(--bg);
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+/* ============================
+   Light Blue Corner Blobs (Top-Right & Bottom-Left)
+   ============================ */
+.bgBlobs {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Top-Right Corner Blob - Expanded Coverage & Radius */
+.blobTopRight {
+  top: -140px;
+  right: -140px;
+  width: 680px;
+  height: 680px;
+  background: radial-gradient(
+    circle at 65% 35%,
+    rgba(147, 197, 253, 0.82) 0%,
+    rgba(165, 210, 255, 0.62) 30%,
+    rgba(191, 219, 254, 0.42) 55%,
+    rgba(224, 242, 254, 0.18) 72%,
+    rgba(255, 255, 255, 0) 85%
+  );
+  filter: blur(80px);
+  animation: blobFloatTR 16s ease-in-out infinite alternate;
+}
+
+/* Bottom-Left Corner Blob - Expanded Coverage & Radius */
+.blobBottomLeft {
+  bottom: -140px;
+  left: -140px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    circle at 35% 65%,
+    rgba(147, 197, 253, 0.82) 0%,
+    rgba(165, 210, 255, 0.62) 30%,
+    rgba(186, 230, 253, 0.42) 55%,
+    rgba(224, 242, 254, 0.18) 72%,
+    rgba(255, 255, 255, 0) 85%
+  );
+  filter: blur(80px);
+  animation: blobFloatBL 18s ease-in-out infinite alternate;
+}
+
+@keyframes blobFloatTR {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, 25px) scale(1.06); }
+  100% { transform: translate(20px, -20px) scale(0.95); }
+}
+
+@keyframes blobFloatBL {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -25px) scale(1.06); }
+  100% { transform: translate(-20px, 20px) scale(0.95); }
 }
 
 /* ============================
    Profile / Header
    ============================ */
 .profile {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 36px;
-  animation: fadeInDown 0.6s ease both;
+  margin-bottom: 34px;
+  animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 /* Logo */
 .logoRing {
   position: relative;
-  width: 108px;
-  height: 108px;
+  width: 110px;
+  height: 110px;
   margin-bottom: 18px;
 }
 
 .logoRing::before {
   content: '';
   position: absolute;
-  inset: -3px;
+  inset: -3.5px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e07b2e, #f5a623, #5b4fcf, #22c55e);
+  background: linear-gradient(135deg, #e07b2e, #f5a623, #5b4fcf, #2563eb, #22c55e);
   z-index: 0;
-  animation: spinRing 5s linear infinite;
+  animation: spinRing 6s linear infinite;
+  box-shadow: 0 4px 18px rgba(91, 79, 207, 0.25);
 }
 
 @keyframes spinRing {
@@ -51,8 +129,8 @@
 }
 
 .logoCircle {
-  width: 108px;
-  height: 108px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   background: #fff;
   display: flex;
@@ -60,8 +138,8 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  border: 3px solid #fff;
-  box-shadow: var(--shadow-md);
+  border: 3.5px solid #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .logoCircle img,
@@ -74,19 +152,19 @@
 
 /* Brand Name */
 .brandName {
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 800;
   letter-spacing: -0.5px;
-  color: var(--text-primary);
+  color: #0f172a;
   margin-bottom: 6px;
 }
 
 .brandTagline {
   font-size: 13.5px;
-  font-weight: 400;
-  color: var(--text-secondary);
+  font-weight: 450;
+  color: #64748b;
   text-align: center;
-  max-width: 260px;
+  max-width: 270px;
   line-height: 1.5;
 }
 
@@ -94,129 +172,179 @@
    Divider
    ============================ */
 .divider {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 440px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-  margin-bottom: 28px;
-  animation: fadeIn 0.6s 0.3s ease both;
+  background: linear-gradient(90deg, transparent, rgba(203, 213, 225, 0.8), transparent);
+  margin-bottom: 26px;
+  animation: fadeIn 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* ============================
-   Links Container
+   Links Container & List
    ============================ */
 .linksContainer {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   width: 100%;
   max-width: 440px;
 }
 
-/* ============================
-   Section Label
-   ============================ */
 .sectionLabel {
   width: 100%;
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.8px;
   text-transform: uppercase;
   color: var(--orange);
-  margin-bottom: 4px;
-  margin-top: 4px;
+  margin-bottom: 12px;
   padding-left: 2px;
-  animation: fadeIn 0.6s 0.2s ease both;
+  animation: fadeIn 0.7s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
 }
 
 /* ============================
-   Link Card
+   Link Card (Left/Right Keyframe Animations)
    ============================ */
 .linkCard {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
+  gap: 15px;
+  padding: 14px 18px;
   border-radius: var(--radius-card);
-  background: #ffffff;
-  border: 1.5px solid #e8eaf0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid #e8ecf4;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1),
-              box-shadow 0.25s ease,
-              border-color 0.25s ease;
   text-decoration: none;
   color: var(--text-primary);
-  animation: fadeInUp 0.5s ease both;
+  will-change: transform, opacity, filter;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease,
+              background 0.3s ease;
 }
 
 .linkCard:active {
-  transform: scale(0.99);
+  transform: scale(0.98);
 }
 
-/* Per-platform hover: colored border + colored shadow */
-.linkCard.website:hover   { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(91,79,207,0.18);   border-color: #a89ef5; }
-.linkCard.instagram:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(225,48,108,0.18);  border-color: #f4a0b8; }
-.linkCard.facebook:hover  { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(24,119,242,0.18);  border-color: #90bdfa; }
-.linkCard.whatsapp:hover  { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(37,211,102,0.18);  border-color: #7de0ac; }
-.linkCard.linkedin:hover  { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(10,102,194,0.18);  border-color: #80bbea; }
-.linkCard.youtube:hover   { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(255,0,0,0.18);     border-color: #fa9090; }
-.linkCard.blogger:hover   { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(245,124,0,0.18);   border-color: #f5bc80; }
-.linkCard.medium:hover    { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(41,41,41,0.14);    border-color: #aaaaaa; }
-.linkCard.quora:hover     { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(185,43,39,0.18);   border-color: #e89090; }
-.linkCard.reddit:hover    { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(255,69,0,0.18);    border-color: #f5a880; }
-
-/* Staggered animation */
-.linkCard:nth-child(1)  { animation-delay: 0.08s; }
-.linkCard:nth-child(2)  { animation-delay: 0.14s; }
-.linkCard:nth-child(3)  { animation-delay: 0.20s; }
-.linkCard:nth-child(4)  { animation-delay: 0.26s; }
-.linkCard:nth-child(5)  { animation-delay: 0.32s; }
-.linkCard:nth-child(6)  { animation-delay: 0.38s; }
-.linkCard:nth-child(7)  { animation-delay: 0.44s; }
-.linkCard:nth-child(8)  { animation-delay: 0.50s; }
-.linkCard:nth-child(9)  { animation-delay: 0.56s; }
-.linkCard:nth-child(10) { animation-delay: 0.62s; }
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ── Alternating Left / Right Keyframe Animations ── */
+.linkCard:nth-child(odd) {
+  animation: slideInLeft 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+.linkCard:nth-child(even) {
+  animation: slideInRight 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Pronounced Staggered Delays */
+.linkCard:nth-child(1)  { animation-delay: 0.10s; }
+.linkCard:nth-child(2)  { animation-delay: 0.22s; }
+.linkCard:nth-child(3)  { animation-delay: 0.34s; }
+.linkCard:nth-child(4)  { animation-delay: 0.46s; }
+.linkCard:nth-child(5)  { animation-delay: 0.58s; }
+.linkCard:nth-child(6)  { animation-delay: 0.70s; }
+.linkCard:nth-child(7)  { animation-delay: 0.82s; }
+.linkCard:nth-child(8)  { animation-delay: 0.94s; }
+.linkCard:nth-child(9)  { animation-delay: 1.06s; }
+.linkCard:nth-child(10) { animation-delay: 1.18s; }
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-55px) scale(0.95);
+    filter: blur(5px);
+  }
+  65% {
+    opacity: 0.95;
+    transform: translateX(3px) scale(1.008);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(55px) scale(0.95);
+    filter: blur(5px);
+  }
+  65% {
+    opacity: 0.95;
+    transform: translateX(-3px) scale(1.008);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Per-platform hover glow & subtle lift */
+.linkCard.website:hover   { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(91, 79, 207, 0.18);  border-color: #a89ef5; background: #ffffff; }
+.linkCard.instagram:hover { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(225, 48, 108, 0.18); border-color: #f4a0b8; background: #ffffff; }
+.linkCard.facebook:hover  { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(24, 119, 242, 0.18); border-color: #90bdfa; background: #ffffff; }
+.linkCard.whatsapp:hover  { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.18); border-color: #7de0ac; background: #ffffff; }
+.linkCard.linkedin:hover  { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(10, 102, 194, 0.18); border-color: #80bbea; background: #ffffff; }
+.linkCard.youtube:hover   { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(255, 0, 0, 0.18);    border-color: #fa9090; background: #ffffff; }
+.linkCard.blogger:hover   { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(245, 124, 0, 0.18);  border-color: #f5bc80; background: #ffffff; }
+.linkCard.medium:hover    { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(41, 41, 41, 0.15);   border-color: #aaaaaa; background: #ffffff; }
+.linkCard.quora:hover     { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(185, 43, 39, 0.18);  border-color: #e89090; background: #ffffff; }
+.linkCard.reddit:hover    { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(255, 69, 0, 0.18);   border-color: #f5a880; background: #ffffff; }
 
 /* ============================
    Icon Box
    ============================ */
 .iconBox {
-  width: 46px;
-  height: 46px;
-  border-radius: 13px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   color: #fff;
-  transition: transform 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .linkCard:hover .iconBox {
-  transform: rotate(-6deg) scale(1.08);
+  transform: rotate(-6deg) scale(1.1);
 }
 
-/* Icon backgrounds — matching smepaisa.com color palette */
-.iconBox.website   { background: linear-gradient(135deg, #5b4fcf, #7c6ef0); }
-.iconBox.instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
-.iconBox.facebook  { background: linear-gradient(135deg, #1877f2, #0d5dbf); }
-.iconBox.whatsapp  { background: linear-gradient(135deg, #25d366, #128c7e); }
-.iconBox.linkedin  { background: linear-gradient(135deg, #0a66c2, #0851a0); }
-.iconBox.youtube   { background: linear-gradient(135deg, #ff0000, #cc0000); }
-.iconBox.blogger   { background: linear-gradient(135deg, #f57c00, #e65100); }
-.iconBox.medium    { background: linear-gradient(135deg, #292929, #444444); }
-.iconBox.quora     { background: linear-gradient(135deg, #b92b27, #8b0000); }
-.iconBox.reddit    { background: linear-gradient(135deg, #ff4500, #cc3700); }
+/* Platform-specific Icon Gradients */
+.iconBox.website   { background: linear-gradient(135deg, #5b4fcf, #7c6ef0); box-shadow: 0 4px 14px rgba(91, 79, 207, 0.35); }
+.iconBox.instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); box-shadow: 0 4px 14px rgba(225, 48, 108, 0.35); }
+.iconBox.facebook  { background: linear-gradient(135deg, #1877f2, #0d5dbf); box-shadow: 0 4px 14px rgba(24, 119, 242, 0.35); }
+.iconBox.whatsapp  { background: linear-gradient(135deg, #25d366, #128c7e); box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35); }
+.iconBox.linkedin  { background: linear-gradient(135deg, #0a66c2, #0851a0); box-shadow: 0 4px 14px rgba(10, 102, 194, 0.35); }
+.iconBox.youtube   { background: linear-gradient(135deg, #ff0000, #cc0000); box-shadow: 0 4px 14px rgba(255, 0, 0, 0.35); }
+.iconBox.blogger   { background: linear-gradient(135deg, #f57c00, #e65100); box-shadow: 0 4px 14px rgba(245, 124, 0, 0.35); }
+.iconBox.medium    { background: linear-gradient(135deg, #292929, #444444); box-shadow: 0 4px 14px rgba(41, 41, 41, 0.35); }
+.iconBox.quora     { background: linear-gradient(135deg, #b92b27, #8b0000); box-shadow: 0 4px 14px rgba(185, 43, 39, 0.35); }
+.iconBox.reddit    { background: linear-gradient(135deg, #ff4500, #cc3700); box-shadow: 0 4px 14px rgba(255, 69, 0, 0.35); }
 
 /* ============================
-   Card Text
+   Card Content
    ============================ */
 .cardContent {
   flex: 1;
@@ -225,8 +353,8 @@
 
 .cardTitle {
   font-size: 14.5px;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-weight: 650;
+  color: #0f172a;
   letter-spacing: -0.1px;
   white-space: nowrap;
   overflow: hidden;
@@ -235,8 +363,8 @@
 
 .cardSubtitle {
   font-size: 12px;
-  font-weight: 400;
-  color: var(--text-secondary);
+  font-weight: 450;
+  color: #64748b;
   margin-top: 2px;
   white-space: nowrap;
   overflow: hidden;
@@ -248,40 +376,43 @@
    ============================ */
 .arrow {
   flex-shrink: 0;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: var(--bg);
+  background: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
-  transition: all 0.25s ease;
-  border: 1.5px solid var(--border);
+  color: #64748b;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid #e2e8f0;
 }
 
 .linkCard:hover .arrow {
-  color: var(--text-primary);
-  background: var(--orange-light);
-  border-color: #e07b2e44;
-  transform: translateX(2px);
+  color: #ffffff;
+  background: var(--orange);
+  border-color: var(--orange);
+  transform: translateX(3px) scale(1.08);
+  box-shadow: 0 2px 10px rgba(224, 123, 46, 0.35);
 }
 
 /* ============================
    Footer
    ============================ */
 .footer {
-  margin-top: 44px;
+  position: relative;
+  z-index: 1;
+  margin-top: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  animation: fadeIn 0.6s 0.8s ease both;
+  animation: fadeIn 0.8s 1.25s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .footerText {
   font-size: 11.5px;
-  color: #adb5bd;
+  color: #94a3b8;
   letter-spacing: 0.2px;
 }
 
@@ -289,19 +420,44 @@
   font-size: 12px;
   font-weight: 700;
   color: var(--orange);
-  letter-spacing: 0.3px;
+  letter-spacing: 0.4px;
 }
 
 /* ============================
-   Utilities
+   Utilities & Responsive
    ============================ */
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-@media (max-width: 480px) {
-  .pageWrapper { padding: 36px 14px 52px; }
-  .brandName   { font-size: 21px; }
-  .logoRing, .logoCircle { width: 92px; height: 92px; }
+@media (max-width: 600px) {
+  .pageWrapper {
+    padding: 36px 16px 52px;
+    background: #ffffff;
+  }
+
+  /* Expanded Corner Blobs on Mobile for clear visibility */
+  .blobTopRight {
+    top: -80px;
+    right: -80px;
+    width: 360px;
+    height: 360px;
+    filter: blur(55px);
+    opacity: 0.9;
+  }
+
+  .blobBottomLeft {
+    bottom: -60px;
+    left: -60px;
+    width: 380px;
+    height: 380px;
+    filter: blur(55px);
+    opacity: 0.9;
+  }
+
+  .brandName { font-size: 22px; }
+  .logoRing, .logoCircle { width: 94px; height: 94px; }
+  .linkCard { padding: 12px 16px; border-radius: 18px; }
+  .iconBox { width: 44px; height: 44px; }
 }

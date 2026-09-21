@@ -207,6 +207,12 @@ function Logo() {
 export default function Home() {
   return (
     <main className={styles.pageWrapper}>
+      {/* Ambient Gradient Blobs (Top-Right and Bottom-Left only) */}
+      <div className={styles.bgBlobs} aria-hidden="true">
+        <div className={`${styles.blob} ${styles.blobTopRight}`} />
+        <div className={`${styles.blob} ${styles.blobBottomLeft}`} />
+      </div>
+
       {/* Profile Header */}
       <section className={styles.profile} aria-label="SME PAISA profile">
         <Logo />
@@ -224,9 +230,11 @@ export default function Home() {
         aria-label="SME PAISA social and web links"
       >
         <p className={styles.sectionLabel}>Quick Links</p>
-        {LINKS.map((link) => (
-          <LinkCard key={link.id} {...link} />
-        ))}
+        <div className={styles.linksList}>
+          {LINKS.map((link) => (
+            <LinkCard key={link.id} {...link} />
+          ))}
+        </div>
       </nav>
 
       {/* Footer */}
@@ -237,3 +245,4 @@ export default function Home() {
     </main>
   );
 }
+
