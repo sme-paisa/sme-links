@@ -262,6 +262,7 @@
 .linkCard:nth-child(8)  { animation-delay: 0.94s; }
 .linkCard:nth-child(9)  { animation-delay: 1.06s; }
 .linkCard:nth-child(10) { animation-delay: 1.18s; }
+.linkCard:nth-child(11) { animation-delay: 1.30s; }
 
 @keyframes slideInLeft {
   0% {
@@ -310,6 +311,7 @@
 .linkCard.medium:hover    { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(41, 41, 41, 0.15);   border-color: #aaaaaa; background: #ffffff; }
 .linkCard.quora:hover     { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(185, 43, 39, 0.18);  border-color: #e89090; background: #ffffff; }
 .linkCard.reddit:hover    { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(255, 69, 0, 0.18);   border-color: #f5a880; background: #ffffff; }
+.linkCard.tumblr:hover    { transform: translateY(-3px) scale(1.015); box-shadow: 0 10px 30px rgba(54, 70, 93, 0.22);   border-color: #7b9ab8; background: #ffffff; }
 
 /* ============================
    Icon Box
@@ -342,6 +344,7 @@
 .iconBox.medium    { background: linear-gradient(135deg, #292929, #444444); box-shadow: 0 4px 14px rgba(41, 41, 41, 0.35); }
 .iconBox.quora     { background: linear-gradient(135deg, #b92b27, #8b0000); box-shadow: 0 4px 14px rgba(185, 43, 39, 0.35); }
 .iconBox.reddit    { background: linear-gradient(135deg, #ff4500, #cc3700); box-shadow: 0 4px 14px rgba(255, 69, 0, 0.35); }
+.iconBox.tumblr    { background: linear-gradient(135deg, #001935, #36465d); box-shadow: 0 4px 14px rgba(0, 25, 53, 0.35); }
 
 /* ============================
    Card Content
@@ -352,10 +355,10 @@
 }
 
 .cardTitle {
-  font-size: 14.5px;
+  font-size: 15.5px;
   font-weight: 650;
   color: #0f172a;
-  letter-spacing: -0.1px;
+  letter-spacing: -0.2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

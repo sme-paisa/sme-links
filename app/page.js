@@ -73,13 +73,18 @@ const IconReddit = () => (
   </svg>
 );
 
+const IconTumblr = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+    <path d="M14.563 24c-5.093 0-7.031-2.443-7.031-5.74V10.42H4.5V6.368c3.96-.864 5.34-3.52 5.586-6.368h3.948v5.823h4.632v4.597h-4.632v7.126c0 1.62.778 2.454 2.442 2.454h2.247V24h-4.16z"/>
+  </svg>
+);
+
 // ── Link Data ─────────────────────────────────────────────────────────────────
 
 const LINKS = [
   {
     id: 'website',
     title: 'Visit Our Website',
-    subtitle: 'smepaisa.com',
     href: 'https://www.smepaisa.com',
     Icon: IconGlobe,
     variant: 'website',
@@ -87,7 +92,6 @@ const LINKS = [
   {
     id: 'instagram',
     title: 'Instagram',
-    subtitle: '@officialsmepaisa',
     href: 'https://www.instagram.com/officialsmepaisa?igsi=cTBwYjFudWlvbWd5',
     Icon: IconInstagram,
     variant: 'instagram',
@@ -95,7 +99,6 @@ const LINKS = [
   {
     id: 'facebook',
     title: 'Facebook',
-    subtitle: 'SME PAISA',
     href: 'https://www.facebook.com/sharer.php?u=https://tr.ee/xKwh0Yk3kw',
     Icon: IconFacebook,
     variant: 'facebook',
@@ -103,7 +106,6 @@ const LINKS = [
   {
     id: 'whatsapp',
     title: 'WhatsApp Channel',
-    subtitle: 'Join our channel',
     href: 'https://whatsapp.com/channel/0029Va9VxjWLCoX0h3ZR2L39',
     Icon: IconWhatsApp,
     variant: 'whatsapp',
@@ -111,7 +113,6 @@ const LINKS = [
   {
     id: 'linkedin',
     title: 'LinkedIn',
-    subtitle: 'SME PAISA Company Page',
     href: 'https://www.linkedin.com/company/sme-paisa',
     Icon: IconLinkedIn,
     variant: 'linkedin',
@@ -119,7 +120,6 @@ const LINKS = [
   {
     id: 'youtube',
     title: 'YouTube',
-    subtitle: '@SMEPaisa-z5g',
     href: 'https://www.youtube.com/@SMEPaisa-z5g',
     Icon: IconYouTube,
     variant: 'youtube',
@@ -127,7 +127,6 @@ const LINKS = [
   {
     id: 'blogger',
     title: 'Blog',
-    subtitle: 'officialsmepaisa.blogspot.com',
     href: 'https://officialsmepaisa.blogspot.com/',
     Icon: IconBlogger,
     variant: 'blogger',
@@ -135,7 +134,6 @@ const LINKS = [
   {
     id: 'medium',
     title: 'Medium',
-    subtitle: '@smepaisaofficial',
     href: 'https://medium.com/@smepaisaofficial',
     Icon: IconMedium,
     variant: 'medium',
@@ -143,7 +141,6 @@ const LINKS = [
   {
     id: 'quora',
     title: 'Quora',
-    subtitle: 'SME PAISA on Quora',
     href: 'https://www.quora.com/profile/SME-PAISA-1',
     Icon: IconQuora,
     variant: 'quora',
@@ -151,16 +148,22 @@ const LINKS = [
   {
     id: 'reddit',
     title: 'Reddit',
-    subtitle: 'u/Express-Dealer2766',
     href: 'https://www.reddit.com/user/Express-Dealer2766/',
     Icon: IconReddit,
     variant: 'reddit',
+  },
+  {
+    id: 'tumblr',
+    title: 'Tumblr',
+    href: 'https://www.tumblr.com/blog/smepaisa',
+    Icon: IconTumblr,
+    variant: 'tumblr',
   },
 ];
 
 // ── Link Card Component ───────────────────────────────────────────────────────
 
-function LinkCard({ title, subtitle, href, Icon, variant }) {
+function LinkCard({ title, href, Icon, variant }) {
   return (
     <a
       href={href}
@@ -174,7 +177,6 @@ function LinkCard({ title, subtitle, href, Icon, variant }) {
       </div>
       <div className={styles.cardContent}>
         <p className={styles.cardTitle}>{title}</p>
-        <p className={styles.cardSubtitle}>{subtitle}</p>
       </div>
       <div className={styles.arrow}>
         <IconArrow />
@@ -218,7 +220,7 @@ export default function Home() {
         <Logo />
         <h1 className={styles.brandName}>SME PAISA</h1>
         <p className={styles.brandTagline}>
-          Empowering Small &amp; Medium Enterprises with Smart Finance
+          Empowering Businesses with the right funding solutions
         </p>
       </section>
 
@@ -239,7 +241,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className={styles.footer}>
-        <p className={styles.footerText}>© 2025 All rights reserved</p>
+        <p className={styles.footerText}>© {new Date().getFullYear()} All rights reserved</p>
         <p className={styles.footerBrand}>SME PAISA</p>
       </footer>
     </main>
